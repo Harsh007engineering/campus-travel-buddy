@@ -13,7 +13,7 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+            const response = await axios.post('https://campus-travel-buddy.vercel.app/api/auth/login', formData);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             toast.success("Welcome back!");

@@ -13,7 +13,7 @@ const Profile = () => {
 
     const fetchTrips = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/trips/all');
+            const res = await axios.get('https://campus-travel-buddy.vercel.app/api/trips/all');
             setTrips(res.data);
         } catch (err) {
             toast.error("Failed to load your profile data");
@@ -24,7 +24,7 @@ const Profile = () => {
         if (!window.confirm("Are you sure you want to delete this trip?")) return;
         const token = localStorage.getItem('token');
         try {
-            await axios.delete(`http://localhost:5000/api/trips/delete/${tripId}`, { headers: { 'Authorization': token }});
+            await axios.delete(`https://campus-travel-buddy.vercel.app/api/trips/delete/${tripId}`, { headers: { 'Authorization': token }});
             toast.success("Trip deleted!");
             fetchTrips();
         } catch (err) {
@@ -36,7 +36,7 @@ const Profile = () => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         try {
-            await axios.put(`http://localhost:5000/api/trips/edit/${editingTrip._id}`, editingTrip, { headers: { 'Authorization': token }});
+            await axios.put(`https://campus-travel-buddy.vercel.app/api/trips/edit/${editingTrip._id}`, editingTrip, { headers: { 'Authorization': token }});
             toast.success("Trip updated successfully!");
             setEditingTrip(null);
             fetchTrips();
@@ -50,7 +50,7 @@ const Profile = () => {
         if (!window.confirm("Are you sure you want to cancel your seat on this ride?")) return;
         const token = localStorage.getItem('token');
         try {
-            await axios.post(`http://localhost:5000/api/trips/leave/${tripId}`, {}, { headers: { 'Authorization': token }});
+            await axios.post(`https://campus-travel-buddy.vercel.app/api/trips/leave/${tripId}`, {}, { headers: { 'Authorization': token }});
             toast.success("You have successfully canceled your seat.");
             fetchTrips(); // Refresh to update the UI
         } catch (err) {

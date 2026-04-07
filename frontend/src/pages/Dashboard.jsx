@@ -18,7 +18,7 @@ const Dashboard = () => {
 
     const fetchTrips = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/trips/all');
+            const res = await axios.get('https://campus-travel-buddy.vercel.app/api/trips/all');
             setTrips(res.data);
         } catch (err) {
             toast.error("Failed to load trips");
@@ -30,7 +30,7 @@ const Dashboard = () => {
         setIsPosting(true);
         const token = localStorage.getItem('token');
         try {
-            await axios.post('http://localhost:5000/api/trips/create', newTrip, { headers: { 'Authorization': token }});
+            await axios.post('https://campus-travel-buddy.vercel.app/api/trips/create', newTrip, { headers: { 'Authorization': token }});
             toast.success("Trip posted successfully!");
             setNewTrip({source: '', destination: '', date: '', time: '', availableSeats: '', costPerPerson: ''});
             fetchTrips();
@@ -44,7 +44,7 @@ const Dashboard = () => {
     const handleJoinTrip = async (tripId) => {
         const token = localStorage.getItem('token');
         try {
-            const res = await axios.post(`http://localhost:5000/api/trips/join/${tripId}`, {}, { headers: { 'Authorization': token }});
+            const res = await axios.post(`https://campus-travel-buddy.vercel.app/api/trips/join/${tripId}`, {}, { headers: { 'Authorization': token }});
             toast.success(res.data.message);
             fetchTrips();
         } catch (err) {

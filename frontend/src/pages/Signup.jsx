@@ -13,7 +13,7 @@ const Signup = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
+            const response = await axios.post('https://campus-travel-buddy.vercel.app/api/auth/signup', formData);
             toast.success("Account created! Please login.");
             navigate('/login'); 
         } catch (error) {
